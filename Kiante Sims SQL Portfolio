@@ -1,0 +1,74 @@
+SQL Techniques
+
+
+SQL projects demonstrates comprehensive skills like:
+•	Retrieving Data from a Single Table
+•	Filtering, Calculating and Aggregating Data
+•	Summarizing the Data
+•	Retrieving Data from Multiple Table
+
+
+SQL Project 1
+Extracting, Sorting, Filtering, and Ranking Data
+
+/*Our content team is reviewing our storage capacity, which is nearing its limit due to storage and licensing costs. Provide the 2 countries that have the largest amount of TV content on Netflix along with their costs for each plan level? */
+
+select country, 
+no_of_tv_shows,
+BASIC_COST_PER_MONTH,
+STANDARD_COST_PER_MONTH,
+premium_cost_per_month
+From netflix_countries
+ORDER by NO_OF_TV_SHOWS desc
+limit 2
+
+
+SQL Project 2
+Filtering Text, Numeric, and Date Data Exercises
+
+/*The content strategy team needs a list of all tv shows on Netflix with at least a 7.0 score on IMDb and at least a 75 Rotten Tomatoes score for shows released after our inception. Sort by the score from largest to smallest, then by the title ame from A to Z.*/
+
+select title,
+netflix,
+imdb,
+rotten_tomatoes,
+year
+from streaming_shows
+where netflix = 1 and imdb >= 7.0 and rotten_tomatoes >= 75 and year > 1997
+order by rotten_tomatoes desc, title asc
+
+
+SQL Project 3
+Date Data and Calculations
+
+/*May you provide us with a list of countries, how many total titles are on Netflix in the country, and the pricing*/
+
+select country,
+basic_cost_per_month,
+standard_cost_per_month,
+premium_cost_per_month,
+no_of_tv_shows,
+no_of_movies,
+no_of_tv_shows + no_of_movies as Total_No_Titles
+from netflix_countries
+
+
+SQL Project 4
+Joins
+
+/*Include all userbase data for our Gmail domain Netflix users, along with their first names and last names.*/
+
+select userbase.*,
+sub_demo.e_dom,
+sub_demo.sub_fname,
+sub_demo.sub_lname
+from userbase inner join sub_demo on sub_demo.sub_id=userbase.user_id
+where sub_demo.e_dom = '@gmail.com'
+
+
+
+
+
+
+
+
